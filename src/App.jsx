@@ -1,14 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription
-} from './components/ui/card';
-import { Button } from './components/ui/button';
-import { Textarea } from './components/ui/textarea';
-import { Progress } from './components/ui/progress';
+
 import {
   Loader2,
   CheckCircle,
@@ -17,8 +8,7 @@ import {
   UploadCloud,
   FileText
 } from 'lucide-react';
-import { Toaster } from './components/ui/toaster';
-import { useToast } from './components/ui/use-toast';
+
 // This import is removed as Tailwind CSS is included in the index.html file via a CDN.
 // import './globals.css';
 
