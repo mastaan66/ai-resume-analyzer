@@ -1,59 +1,69 @@
-# Resume Analyzer App
-An AI-powered web application built with React to help job seekers get instant and actionable feedback on their resumes. This tool analyzes your resume for an ATS (Applicant Tracking System) score, identifies strengths and weaknesses, and provides a targeted analysis based on a specific job description.
+# ai-resume-analyzer
 
-# Features
-- ATS Score: Get a score from 0-100 indicating how well your resume would pass an Applicant Tracking System.
-- Strengths & Weaknesses: Receive a detailed breakdown of what's working and what could be improved in your resume.
-- Job Description Match: Paste a job description to get a tailored analysis on how your resume aligns with the role's requirements, highlighting key keywords and missed opportunities.
-- PDF Upload: Easily upload your resume in PDF format, and the app will automatically extract the text for analysis.
+A React app that analyzes resumes for ATS score, strengths and weaknesses, and job description match. Paste text or upload a PDF, add a target role, and get structured feedback.
 
-Screenshots
-Here are some screenshots of the application in action.
+PDF text is extracted in the browser with pdf.js and sent to Gemini for analysis. The UI shows score, keyword gaps and actionable suggestions.
 
-### Main View
+## Why this exists
 
-#### Analysis Results
+ATS blocks many resumes before a human reads them. This tool gives quick, specific feedback so candidates can tailor their resume for each role.
 
-### Technologies Used
-- Frontend: React
+## Features
 
-- Styling: Tailwind CSS
+- ATS score from 0 to 100
+- Strengths and weaknesses with examples
+- Job description match with missing keywords
+- PDF upload with client side text extraction
+- Progress and toast feedback
 
-- PDF Parsing: pdf.js library
+## Project structure
 
-- Backend: Gemini API (used for the analysis logic)
+```text
+.
+├── src
+│   ├── components/ui
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+└── vite.config.js
+```
 
-### Installation and Setup
-Follow these steps to get the project running on your local machine.
+## Prerequisites
 
-#### Prerequisites
-- Node.js & npm: Ensure you have Node.js (v14.0 or newer) and npm installed on your system. You can download it from the official Node.js website.
+Node 18 or later and a Gemini API key for analysis.
 
-#### Step 1: Clone the Repository
-Clone this repository to your local machine.
+## Installation
 
+```bash
 git clone https://github.com/mastaan66/ai-resume-analyzer.git
 cd ai-resume-analyzer
-
-#### Step 2: Install Dependencies
-Install all the required packages by running the following command in the project directory.
-
-```js
 npm install
 ```
 
-#### Step 3: Run the App
-Start the development server.
+Create `.env` with your key
 
-```js
+```text
+VITE_GEMINI_API_KEY=your_key_here
+```
+
+## Usage
+
+```bash
 npm run dev
 ```
 
-#### Your app will be live at http://localhost:5173.
+Open `http://localhost:5173`, paste a resume or upload a PDF, optionally paste a job description, and click Analyze. The service in `src/App.jsx:1` handles extraction and the Gemini call with retry.
 
-### Usage
-- Paste your Resume: Paste the text of your resume into the first text area, or use the drag-and-drop zone to upload a PDF file.
+## Limitations
 
-- Add a Job Description: Paste the job description for a specific role into the second text area for a more targeted analysis. This step is optional.
+- Analysis quality depends on the LLM and prompt
+- No server side storage, results are session only
+- PDF extraction uses pdf.js worker from CDN
 
-- Click "Analyze": Click the button to get your detailed feedback report, including the ATS score and a list of strengths and weaknesses.
+## Contributing
+
+Issues and pull requests are welcome.
+
+## License
+
+MIT. See LICENSE.
